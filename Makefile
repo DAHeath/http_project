@@ -5,7 +5,7 @@ RM = rm -f
 
 all: web_client
 
-web_client: web_client.o get_request.o
+web_client: web_client.o get_request.o my_lib.o socket.o
 	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
 clean:

@@ -8,6 +8,8 @@
 #include <string.h>
 #include <netdb.h>
 
+#include "my_lib.h"
+
 #define DEFAULT_HTTP_PORT 80
 
 const char *GetRequest::file() {
@@ -78,19 +80,12 @@ char *GetRequest::initCharArray() {
   return (char*) malloc(length()*sizeof(char));
 };
 
-void GetRequest::exitWithMessage(std::string message) {
-  std::cerr << message;
-  exit(1);
-};
-
 void GetRequest::exitWithBadUrl() {
-  exitWithMessage(std::string("Failed to parse URL: ") + 
-      strerror(errno) + 
-      "\n");
+  exitWithMessage((std::string("Failed to parse URL: ") + 
+      strerror(errno)).c_str());
 };
 
 void GetRequest::exitWithInvalidRequest() {
-  exitWithMessage(std::string("Error: ") + 
-      _url + 
-      " is not a valid request\n");
+  exitWithMessage((std::string("Error: ") + 
+      _url + " is not a valid request").c_str());
 };

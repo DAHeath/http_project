@@ -49,7 +49,6 @@ class GetRequest {
     char *initCharArray();
     void exitWithBadUrl();
     void exitWithInvalidRequest();
-    void exitWithMessage(std::string message);
 };
 
 #endif
