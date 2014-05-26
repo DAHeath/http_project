@@ -35,6 +35,13 @@ class GetRequest {
      * Returns an entity containing the ip address of the server.
      */
     const unsigned long ipAddress();
+
+    /**
+     * Returns a string representation of the get request that is fit for 
+     * sending to a server. In this simple example, only the 'host' and 
+     * 'connection' header fields will be filled out.
+     */
+    const char *formattedRequest();
   private:
     const char *_url;
     const unsigned int length();

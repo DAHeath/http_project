@@ -54,9 +54,18 @@ const unsigned long GetRequest::ipAddress() {
   return *((unsigned long *)addr->h_addr_list[0]);
 }
 
+const char *GetRequest::formattedRequest() {
+  std::string response = 
+    std::string("GET /") + file() + " HTTP/1.1\r\n" +
+    "Host: " + server() + "\r\n" + 
+    "Connection: keep-alive\r\n" + //TODO this is not the correct type!!
+    "\r\n"; 
+  return response.c_str();
+}
+
 const unsigned int GetRequest::length() {
   return strlen(_url)+1;
-}
+  }
 
 const char *GetRequest::rawServer() {
   char *server = initCharArray();
