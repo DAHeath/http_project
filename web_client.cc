@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include "get_request.h"
+#include <netdb.h>
 
 int main(int argc, char **argv) {
   if (argc < 2) {
@@ -16,5 +17,6 @@ int main(int argc, char **argv) {
 
   fprintf(stderr, "Server: %s:%hu\nFile: /%s\n", 
       req.server(), req.port(), req.file());
+  std::cout << req.ipAddress() << "\n";
   return 0;
 }

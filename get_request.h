@@ -30,6 +30,11 @@ class GetRequest {
      * Returns the port specified by the request.
      */
     const unsigned short port();
+
+    /**
+     * Returns an entity containing the ip address of the server.
+     */
+    const unsigned long ipAddress();
   private:
     const char *_url;
     const unsigned int length();

@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <iostream>
 #include <string.h>
+#include <netdb.h>
 
 #define DEFAULT_HTTP_PORT 80
 
@@ -43,6 +44,14 @@ const unsigned short GetRequest::port() {
   else if (res < 1) exitWithInvalidRequest();
   assert(port > 0);
   return port;
+}
+
+const unsigned long GetRequest::ipAddress() {
+  const char *name = server();
+  const struct hostent *addr = gethostbyname(name);
+  if (NULL == addr) exitWithMessage("gethostbyname() failed.");
+  free((char*)name);
+  return *((unsigned long *)addr->h_addr_list[0]);
 }
 
 const unsigned int GetRequest::length() {
