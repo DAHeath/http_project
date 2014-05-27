@@ -21,7 +21,7 @@ const sockaddr_in buildAddress(GetRequest req) {
 std::string getResponse(GetRequest req, sockaddr_in addr) {
   TcpSocket socket = TcpSocket(addr);
   socket.connectSocket();
-  socket.sendMessage(req.formattedRequest());
+  socket.sendMessage(req.formattedRequest().c_str());
   std::string response = socket.receiveMessage();
   socket.closeSocket();
   return response;
@@ -31,6 +31,7 @@ int main(int argc, char **argv) {
   if (argc < 2) exitWithMessage("Usage: http_client URL\n");
 
   GetRequest req = GetRequest(argv[1]);
+
   std::cerr << "Server: " << req.server() << ":" << req.port() << "\n" <<
     "File: " << req.file() << "\n" <<
     "Sending:\n" << req.formattedRequest() << "\n";

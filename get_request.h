@@ -12,27 +12,34 @@
  */
 class GetRequest {
   public:
-    GetRequest(const char* url): _url(url) { };
+    GetRequest(const std::string url): _url(url) { };
 
     /**
      * Returns a string representation of the file specified by this request.
-     * It is the responsibility of the user to delete the returned string.
+     *
+     * For example, 'http://google.com:8080/file' would yield '/file'.
      */
-    const char *file() const;
+    const std::string file() const;
 
     /**
      * Returns a string representation of the server specified by this request.
-     * It is the responsibility of the user to delete the returned string.
+     *
+     * For example, 'http://google.com:8080/file' would yield 'google.com'.
      */
-    const char *server() const;
+    const std::string server() const;
 
     /**
      * Returns the port specified by the request.
+     *
+     * For example,'http://google.com:8080/file' would yield '8080'.
+     * In the event that no port is specified, it should return the default 
+     * value of port 80.
      */
     const unsigned short port() const;
 
     /**
-     * Returns an entity containing the ip address of the server.
+     * Returns the ip address of the server. A DNS lookup is performed on the
+     * server name to get this information.
      */
     const unsigned long ipAddress() const;
 
@@ -41,12 +48,10 @@ class GetRequest {
      * sending to a server. In this simple example, only the 'host' and 
      * 'connection' header fields will be filled out.
      */
-    const char *formattedRequest() const;
+    const std::string formattedRequest() const;
   private:
-    const char *_url;
-    const unsigned int length() const;
-    const char *rawServer() const;
-    char *initCharArray() const;
+    const std::string _url;
+    const std::string rawServer() const;
 };
 
 #endif
