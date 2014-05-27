@@ -18,37 +18,35 @@ class GetRequest {
      * Returns a string representation of the file specified by this request.
      * It is the responsibility of the user to delete the returned string.
      */
-    const char *file();
+    const char *file() const;
 
     /**
      * Returns a string representation of the server specified by this request.
      * It is the responsibility of the user to delete the returned string.
      */
-    const char *server();
+    const char *server() const;
 
     /**
      * Returns the port specified by the request.
      */
-    const unsigned short port();
+    const unsigned short port() const;
 
     /**
      * Returns an entity containing the ip address of the server.
      */
-    const unsigned long ipAddress();
+    const unsigned long ipAddress() const;
 
     /**
      * Returns a string representation of the get request that is fit for 
      * sending to a server. In this simple example, only the 'host' and 
      * 'connection' header fields will be filled out.
      */
-    const char *formattedRequest();
+    const char *formattedRequest() const;
   private:
     const char *_url;
-    const unsigned int length();
-    const char *rawServer();
-    char *initCharArray();
-    void exitWithBadUrl();
-    void exitWithInvalidRequest();
+    const unsigned int length() const;
+    const char *rawServer() const;
+    char *initCharArray() const;
 };
 
 #endif

@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
   int location = response.find("\r\n\r\n") + 4;
   std::string header = response.substr(0, location);
   std::string body = response.substr(location);
-  std::cerr << header << "\n\n\n\n" << body;
+  std::cerr << header;
   std::cout << body;
 
   return 0;
